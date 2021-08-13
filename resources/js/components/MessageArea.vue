@@ -3,8 +3,8 @@
         <div>
 
             <li class="list-group-item" :class="className"><slot></slot></li>
-            <small v-if="user" style="">{{ user.name }}</small>
-            <small v-else>You</small>
+            <small v-if="user" style="">{{ user.name }} at {{ time }}</small>
+            <small v-else>You at {{ new Date().getHours() + ':' + new Date().getMinutes() }}</small>
             <b-badge variant="primary">Yh</b-badge>
         </div>
     </div>
@@ -12,7 +12,7 @@
 <script>
 export default {
     name: 'message-area',
-    props: [ 'user'],
+    props: [ 'user', 'time'],
     data() {
         return {
 

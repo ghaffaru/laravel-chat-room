@@ -19,7 +19,8 @@ const app = new Vue({
     data() {
         return {
             message: '',
-            messages: []
+            messages: [],
+            typing: ''
         }
     },
     methods: {
@@ -27,7 +28,7 @@ const app = new Vue({
             if (this.message.length) {
                 this.messages.push({message: this.message});
             }
-            axios.post('/send', {message: this.message})
+            axios.post('/send', {message: this.message, time: new Date().getHours() + ':' + new Date().getMinutes()})
                 .then(res => {
                     console.log(res);
                 })
@@ -39,5 +40,21 @@ const app = new Vue({
             .listen('ChatEvent', (e) => {
                 this.messages.push(e);
             })
+            .listenForWhisper('typing', (e) => {
+                if (e.name.length) {
+                   this.typing = 'typing...'
+                } else {
+                    this.typing = '';
+                }
+            })
+    },
+    watch: {
+        message() {
+            Echo.private('chat')
+                .whisper('typing', {
+                    name: this.message
+                })
+
+        }
     }
 })

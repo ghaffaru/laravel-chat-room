@@ -18,9 +18,10 @@
         <div class="row">
             <div class="offset-4 col-4">
                 <li class="list-group-item active" >Chat Room</li>
+                <div>@{{ typing }}</div>
                 <ul class="list-group" v-chat-scroll>
 
-                    <message-area v-for="message in messages" :key="message.message" :user="message.user">@{{ message.message }}</message-area>
+                    <message-area v-for="message in messages" :key="message.message" :user="message.user" :time="message.time">@{{ message.message }}</message-area>
 
                 </ul>
                 <input type="text" class="form-control" placeholder="Type your message here ..." v-model="message" @keyup.enter="send"/>
