@@ -20,7 +20,7 @@
                 <li class="list-group-item active" >Chat Room</li>
                 <ul class="list-group" v-chat-scroll>
 
-                    <message-area v-for="message in messages" :key="message" color="success">@{{ message }}</message-area>
+                    <message-area v-for="message in messages" :key="message.message" :user="message.user">@{{ message.message }}</message-area>
 
                 </ul>
                 <input type="text" class="form-control" placeholder="Type your message here ..." v-model="message" @keyup.enter="send"/>

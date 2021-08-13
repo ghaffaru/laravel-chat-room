@@ -3,7 +3,8 @@
         <div>
 
             <li class="list-group-item" :class="className"><slot></slot></li>
-            <small>You</small>
+            <small v-if="user" style="">{{ user.name }}</small>
+            <small v-else>You</small>
             <b-badge variant="primary">Yh</b-badge>
         </div>
     </div>
@@ -11,7 +12,7 @@
 <script>
 export default {
     name: 'message-area',
-    props: ['color'],
+    props: [ 'user'],
     data() {
         return {
 
@@ -19,7 +20,11 @@ export default {
     },
     computed: {
         className() {
-            return 'list-group-item-' + this.color;
+            if (this.user) {
+                return 'list-group-item-warning';
+            }else {
+                return 'list-group-item-success';
+            }
         },
         badgeClass() {
             return  this.color;
