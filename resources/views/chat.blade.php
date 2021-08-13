@@ -15,8 +15,9 @@
 </head>
 <body>
     <div class="container" id="app">
+        <br>
         <div class="row">
-            <div class="offset-4 col-4">
+            <div class="offset-3 col-md-6 offset-3" >
                 <li class="list-group-item active" >Chat Room @{{ numberOfUsers }}</li>
                 <div>@{{ typing }}</div>
                 <ul class="list-group" v-chat-scroll>
