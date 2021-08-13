@@ -25,3 +25,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/chat', [ChatController::class, 'chat']);
+Route::post('/send', [ChatController::class, 'send']);

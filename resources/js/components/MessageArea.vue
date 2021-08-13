@@ -25,6 +25,9 @@ export default {
             return  this.color;
         }
     },
+    methods: {
+
+    },
     mounted() {
 
     }
