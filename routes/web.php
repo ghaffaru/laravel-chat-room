@@ -26,3 +26,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/chat', [ChatController::class, 'chat']);
 Route::post('/send', [ChatController::class, 'send']);
+Route::get('/chats',[ChatController::class, 'chats']);

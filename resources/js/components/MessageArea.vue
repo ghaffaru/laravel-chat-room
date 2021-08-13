@@ -3,7 +3,7 @@
         <div>
 
             <li class="list-group-item" :class="className"><slot></slot></li>
-            <small v-if="user" style="">{{ user.name }} at {{ time }}</small>
+            <small v-if="user.id != authuser.id" style="">{{ user.name }} at {{ time }}</small>
             <small v-else>You at {{ new Date().getHours() + ':' + new Date().getMinutes() }}</small>
             <b-badge variant="primary">Yh</b-badge>
         </div>
@@ -12,7 +12,7 @@
 <script>
 export default {
     name: 'message-area',
-    props: [ 'user', 'time'],
+    props: [ 'user', 'time', 'authuser'],
     data() {
         return {
 
@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         className() {
-            if (this.user) {
+            if (this.user.id != this.authuser.id) {
                 return 'list-group-item-warning';
             }else {
                 return 'list-group-item-success';
@@ -34,7 +34,7 @@ export default {
 
     },
     mounted() {
-
+        console.log(this.authuser)
     }
 }
 </script>
